@@ -3,16 +3,14 @@ import packageJson from './package.json' with {type: 'json'}
 const {name, version} = packageJson
 
 function getProblem(node, context) {
-  {
-    let {parent} = node
-    while (
-      parent.type === 'MemberExpression' &&
-      !parent.optional &&
-      parent.object === node
-    ) {
-      node = parent
-      parent = node.parent
-    }
+  let {parent} = node
+  while (
+    parent.type === 'MemberExpression' &&
+    !parent.optional &&
+    parent.object === node
+  ) {
+    node = parent
+    parent = node.parent
   }
 
   const {parent: callExpression} = node
