@@ -5,23 +5,23 @@ const stringCooked = (raw, ...substitutions) =>
 // `Reflect.isTemplateObject` https://github.com/tc39/proposal-array-is-template-object
 const reflectIsTemplateObject = (value) => Array.isArray(value) && value.raw
 
+// eslint-disable-next-line max-params
 function runStyleText(
   styleText,
+  options,
   formats,
   textOrTemplateObject,
   ...substitutions
 ) {
-  return styleText(
-    formats,
-    reflectIsTemplateObject(textOrTemplateObject)
-      ? stringCooked(textOrTemplateObject, substitutions)
-      : textOrTemplateObject,
-  )
+  const text = reflectIsTemplateObject(textOrTemplateObject)
+    ? stringCooked(textOrTemplateObject, substitutions)
+    : textOrTemplateObject
+  return styleText(formats, text, options)
 }
 
-const factory = (styleText, ...formats) =>
-  new Proxy(runStyleText.bind(styleText, styleText, formats), {
-    get: (_, format) => factory(styleText, ...formats, format),
+const factory = (styleText, options, ...formats) =>
+  new Proxy(runStyleText.bind(styleText, styleText, options, formats), {
+    get: (_, format) => factory(styleText, options, ...formats, format),
   })
 
 export {factory}

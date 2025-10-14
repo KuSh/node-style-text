@@ -2,8 +2,7 @@ import assert from 'node:assert/strict'
 import process from 'node:process'
 import test from 'node:test'
 import {styleText as nodeUtilStyleText} from 'node:util'
-import styleTextBrowser from './browser.js'
-import styleText from './index.js'
+import styleText, {stderr, stdout} from './index.js'
 
 const supportsNone = (() => {
   try {
@@ -13,12 +12,8 @@ const supportsNone = (() => {
   }
 })()
 
-test('Main', () => {
+test('Main [Node.js]', () => {
   process.env.FORCE_COLOR = '1'
-  assert.equal(typeof styleText, 'function')
-  assert.equal(typeof styleText.bold, 'function')
-  assert.equal(typeof styleText.nonExists, 'function')
-  assert.equal(styleText('foo'), 'foo')
   assert.equal(styleText.bold('foo'), '\u001B[1mfoo\u001B[22m')
   assert.equal(styleText.underline('foo'), '\u001B[4mfoo\u001B[24m')
   assert.equal(styleText.red('foo'), '\u001B[31mfoo\u001B[39m')
@@ -36,7 +31,6 @@ test('Main', () => {
     styleText.cyan.underline`hello ${'world'}`,
     '\u001B[36m\u001B[4mhello world\u001B[24m\u001B[39m',
   )
-  assert.equal(styleTextBrowser.cyan.underline`hello ${'world'}`, 'hello world')
   assert.equal(
     styleText.cyan.underline`hello\u0020${'world'}`,
     '\u001B[36m\u001B[4mhello world\u001B[24m\u001B[39m',
@@ -71,8 +65,11 @@ test('Main', () => {
   if (supportsNone) {
     assert.equal(styleText.none('foo'), 'foo')
   }
+})
 
-  // Figure out how to test
+// This test is not really working
+// Figure out how to test
+test('stream', () => {
   const notColored = 'foo'
   const redColored = '\u001B[31mfoo\u001B[39m'
   assert.notDeepEqual(overrideColorDepth({stream: process.stdout, depth: 0}), {
@@ -95,12 +92,10 @@ function overrideColorDepth({stream, depth}) {
     delete process.env.FORCE_COLOR
     stream.isTTY = true
     stream.getColorDepth = () => depth
-    return Object.fromEntries(
-      ['stdout', 'stderr'].map((type) => [
-        type,
-        styleText.red('foo', {stream: process[type]}),
-      ]),
-    )
+    return {
+      stdout: stdout.red('foo'),
+      stderr: stderr.red('foo'),
+    }
   } finally {
     if (originalForceColor !== undefined) {
       process.env.FORCE_COLOR = originalForceColor

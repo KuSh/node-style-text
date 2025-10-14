@@ -28,6 +28,17 @@ console.log(styleText.blue.underline('Hello world!'))
 console.log(styleText.blue.underline`Hello ${'world'}!`))
 ```
 
+Use `process.stderr` to validate colors.
+
+```js
+import {stdout, stderr} from 'node-style-text'
+
+// Validate `process.stderr` if it can be colored instead of `process.stdout`.
+console.log(stderr.underline('Hello world!'))
+```
+
+Check [`options.stream` for `util.styleText`](https://nodejs.org/api/util.html#utilstyletextformat-text-options) for details.
+
 ## Motivation
 
 Provide convenience API.
