@@ -1,3 +1,4 @@
+import process from 'node:process'
 import {expectType, expectError} from 'tsd'
 import styleText from './index.js'
 
@@ -7,3 +8,4 @@ expectType<typeof styleText>(styleText.green)
 expectError(styleText.nonExists)
 expectError(styleText(1))
 expectError(styleText())
+expectError(styleText('foo', {stream: process.stderr}))
