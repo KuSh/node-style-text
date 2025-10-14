@@ -25,7 +25,8 @@ type StyleText = {
 
   /**
   Returns a formatted text with `format` applied.
-  @param text - Text to add style.
+  @param template A well-formed template string call site representation.
+  @param substitutions A set of substitution values.
 
   The full list of formats can be found in [colors](https://nodejs.org/docs/latest/api/util.html#customizing-utilinspect-colors).
 
