@@ -22,13 +22,15 @@
       "browser": "./browser.js",
       "default": "./index.js"
     },
+    "./eslint-config": "./eslint-config.js",
     "./*": "./*"
   },
   "files": [
     "index.js",
     "browser.js",
     "utilities.js",
-    "index.d.ts"
+    "index.d.ts",
+    "eslint-config.js"
   ],
   "scripts": {
     "clean": "run-p \"clean:*\"",
@@ -47,8 +49,9 @@
     "lint:prettier": "prettier . --check",
     "prepare": "husky install",
     "release": "run-s fix test dist",
-    "test": "run-p test:js test:types",
+    "test": "run-p test:js test:eslint test:types",
     "test-coverage": "c8 yarn test",
+    "test:eslint": "node eslint-test.js",
     "test:js": "node --test *.test.js",
     "test:types": "tsd"
   },
@@ -74,6 +77,7 @@
     "lint-staged": "16.2.4",
     "markdownlint-cli2": "0.18.1",
     "npm-run-all2": "8.0.4",
+    "outdent": "0.8.0",
     "prettier": "3.6.2",
     "release-it": "19.0.5",
     "sort-package-json": "3.4.0",

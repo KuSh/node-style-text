@@ -79,3 +79,26 @@ Provide convenience API.
 Example: `styleText.red.bold.underline('Hello, world!');`
 
 Available formats: [`util.inspect.colors`](https://nodejs.org/api/util.html#customizing-utilinspect-colors)
+
+## Style
+
+This module also provide an ESLint config to enforce use tagged templates when possible
+
+```js
+// ✅
+styleText.red(`foo`)
+
+// ❌
+styleText.red`foo`
+```
+
+Add this to you `eslint.config.js`
+
+```js
+import nodeStyleTextEslintConfig from 'node-style-text/eslint-config'
+
+export default [
+  // ... Your other eslint configs
+  nodeStyleTextEslintConfig,
+]
+```
