@@ -34,9 +34,13 @@ test('Main', () => {
 
   assert.equal(
     styleText.cyan.underline`hello ${'world'}`,
-    '\x1B[36m\x1B[4mhello world\x1B[24m\x1B[39m',
+    '\u001B[36m\u001B[4mhello world\u001B[24m\u001B[39m',
   )
   assert.equal(styleTextBrowser.cyan.underline`hello ${'world'}`, 'hello world')
+  assert.equal(
+    styleText.cyan.underline`hello\u0020${'world'}`,
+    '\u001B[36m\u001B[4mhello world\u001B[24m\u001B[39m',
+  )
 
   // Support alias https://nodejs.org/api/util.html#customizing-utilinspect-colors
   const aliases = [
