@@ -104,6 +104,6 @@ export default {
     [name]: plugin,
   },
   rules: Object.fromEntries(
-    Object.keys(plugin.rules).map((id) => [id, 'error']),
+    Object.keys(plugin.rules).map((ruleId) => [`${name}/${ruleId}`, 'error']),
   ),
 }

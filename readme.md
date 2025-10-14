@@ -95,10 +95,10 @@ styleText.red`foo`
 Add this to you `eslint.config.js`
 
 ```js
-import nodeStyleTextEslintConfig from 'node-style-text/eslint-config'
+import eslintConfigNodeStyleText from 'node-style-text/eslint-config'
 
 export default [
   // ... Your other eslint configs
-  nodeStyleTextEslintConfig,
+  eslintConfigNodeStyleText,
 ]
 ```
