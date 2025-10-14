@@ -5,7 +5,6 @@ const stringCooked = (raw, ...substitutions) =>
 // `Reflect.isTemplateObject` https://github.com/tc39/proposal-array-is-template-object
 const reflectIsTemplateObject = (value) => Array.isArray(value) && value.raw
 
-// eslint-disable-next-line max-params
 function runStyleText(
   styleText,
   options,
