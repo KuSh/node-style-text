@@ -1,8 +1,4 @@
-import util from 'node:util'
+import {styleText} from 'node:util'
+import {factory} from './utilities.js'
 
-const factory = (...formats) =>
-  new Proxy(util.styleText.bind(util, formats), {
-    get: (_, format) => factory(...formats, format),
-  })
-
-export default factory()
+export default factory(styleText)
