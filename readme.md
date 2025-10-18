@@ -80,15 +80,15 @@ Example: `styleText.red.bold.underline('Hello, world!');`
 
 Available formats: [`util.inspect.colors`](https://nodejs.org/api/util.html#customizing-utilinspect-colors)
 
-## Style
+## Code style
 
 This module also provide an ESLint config to enforce use tagged templates when possible
 
 ```js
-// ✅
+// ❌
 styleText.red(`foo`)
 
-// ❌
+// ✅
 styleText.red`foo`
 ```
 
