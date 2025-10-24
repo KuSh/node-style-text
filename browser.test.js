@@ -3,5 +3,8 @@ import test from 'node:test'
 import styleText from './browser.js'
 
 test('Main [Browser]', () => {
-  assert.equal(styleText.cyan.underline`hello ${'world'}`, 'hello world')
+  assert.equal(
+    styleText.cyan.underline`${'hello'}\u0020${'world'}`,
+    'hello world',
+  )
 })

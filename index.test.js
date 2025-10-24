@@ -28,7 +28,7 @@ test('Main [Node.js]', () => {
   )
 
   assert.equal(
-    styleText.cyan.underline`hello ${'world'}`,
+    styleText.cyan.underline`${'hello'} ${'world'}`,
     '\u001B[36m\u001B[4mhello world\u001B[24m\u001B[39m',
   )
   assert.equal(
