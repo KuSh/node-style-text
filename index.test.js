@@ -32,8 +32,8 @@ test('Main [Node.js]', () => {
     '\u001B[36m\u001B[4mhello world\u001B[24m\u001B[39m',
   )
   assert.equal(
-    styleText.cyan.underline`hello\u0020${'world'}`,
-    '\u001B[36m\u001B[4mhello world\u001B[24m\u001B[39m',
+    styleText.cyan.underline`\u0020hello,\u0020${'world'}\u0020`,
+    '\u001B[36m\u001B[4m hello, world \u001B[24m\u001B[39m',
   )
 
   // Support alias https://nodejs.org/api/util.html#customizing-utilinspect-colors
