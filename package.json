@@ -23,6 +23,7 @@
       "default": "./index.js"
     },
     "./eslint-config": "./eslint-config.js",
+    "./eslint-plugin": "./eslint-plugin.js",
     "./*": "./*"
   },
   "files": [
